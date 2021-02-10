@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package demo;
+package com.demo;
 
-import com.javafx.scheduleapp.control.VirtualKeyboard;
+import com.demo.controls.VirtualKeyboard;
 import javafx.animation.Animation;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;

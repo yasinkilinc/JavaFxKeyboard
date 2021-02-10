@@ -29,17 +29,17 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.javafx.scheduleapp.control;
+package com.demo.controls;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import com.demo.FXRobotHandler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -53,7 +53,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
-import org.comtel.javafx.robot.FXRobotHandler;
 
 /**
  * The VirtualKeyboardSkin simply has a pile of keys depending on the keyboard
@@ -68,9 +67,10 @@ public class VirtualKeyboardSkin extends SkinBase<VirtualKeyboard> {
     private int numCols;
     private boolean capsDown = false;
     private boolean shiftDown = false;
+    private FXRobotHandler handler = new FXRobotHandler();
 
   private final VirtualKeyboard skinnable = getSkinnable();
-  
+
     void clearShift() {
         shiftDown = false;
         updateKeys();
@@ -148,7 +148,7 @@ public class VirtualKeyboardSkin extends SkinBase<VirtualKeyboard> {
         }
 
     }
-  
+
 
     // This skin is designed such that it gives equal widths to all columns. So
     // the pref width is just some hard-coded value (although I could have maybe
@@ -194,8 +194,8 @@ public class VirtualKeyboardSkin extends SkinBase<VirtualKeyboard> {
         }
     }
 
-    
-    
+
+
 
     /**
      * A Key on the virtual keyboard. This is simply a Region. Some information
@@ -287,9 +287,7 @@ public class VirtualKeyboardSkin extends SkinBase<VirtualKeyboard> {
          * @param ctrl
          */
         protected void sendToComponent(char ch, boolean ctrl) {
-
-         FXRobotHandler.sendToComponent(skinnable, ch, ctrl);
-
+            handler.sendToComponent(skinnable, ch, ctrl);
         }
 
         @Override
@@ -303,7 +301,7 @@ public class VirtualKeyboardSkin extends SkinBase<VirtualKeyboard> {
         }
 
         protected KeyEvent event(EventType<KeyEvent> type) {
-            
+
             return new KeyEvent(type, chars, chars, KeyCode.UP, capsDown, capsDown, capsDown, capsDown);
 
         }
@@ -447,7 +445,7 @@ public class VirtualKeyboardSkin extends SkinBase<VirtualKeyboard> {
         try {
             List<List<Key>> rows = new ArrayList<>(5);
             List<Key> keys = new ArrayList<>(20);
-            InputStream asciiBoardFile = VirtualKeyboardSkin.class.getResourceAsStream(boardName + ".txt");
+            InputStream asciiBoardFile = VirtualKeyboardSkin.class.getResourceAsStream("/"+boardName + ".txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(asciiBoardFile));
             String line;
             // A pointer to the current column. This will be incremented for every string

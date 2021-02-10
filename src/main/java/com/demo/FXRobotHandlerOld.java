@@ -1,3 +1,4 @@
+/*
 package org.comtel.javafx.robot;
 
 
@@ -11,7 +12,7 @@ import com.sun.javafx.robot.FXRobot;
 import com.sun.javafx.robot.FXRobotFactory;
 import com.javafx.scheduleapp.control.VirtualKeyboard;
 
-public class FXRobotHandler {
+public class FXRobotHandlerOld {
 
 //	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(FXRobotHandler.class);
 
@@ -69,7 +70,7 @@ public class FXRobotHandler {
 				robot.keyRelease(KeyCode.CONTROL);
 				return;
 			}
-			
+
 
 		}else{
                     switch (ch) {
@@ -132,3 +133,4 @@ public class FXRobotHandler {
 	}
 
 }
+*/

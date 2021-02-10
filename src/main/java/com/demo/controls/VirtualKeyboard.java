@@ -29,13 +29,15 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.javafx.scheduleapp.control;
+package com.demo.controls;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
 import javafx.scene.control.Control;
 import javafx.scene.input.KeyEvent;
+
+import java.net.URL;
 
 /**
  * Our virtual keyboard. This keyboard of itself doesn't show or hide, it simply is.
@@ -56,7 +58,7 @@ public class VirtualKeyboard extends Control {
 
     public VirtualKeyboard() {
         this(Type.TEXT);
-   
+
     }
 
     public VirtualKeyboard(Type type) {
@@ -69,8 +71,8 @@ public class VirtualKeyboard extends Control {
     public final void setOnAction(EventHandler<KeyEvent> value) { onAction.set(value); }
     public final EventHandler<KeyEvent> getOnAction() { return onAction.get(); }
     public final ObjectProperty<EventHandler<KeyEvent>> onActionProperty() { return onAction; }
-    
-    @Override protected String getUserAgentStylesheet() {
-        return getClass().getResource("css/vk.css").toExternalForm();
+
+    @Override public String getUserAgentStylesheet() {
+        return getClass().getResource("/css/vk.css").toExternalForm();
     }
 }
